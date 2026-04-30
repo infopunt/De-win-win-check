@@ -2,174 +2,283 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>De Win-Win Check</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economie Quiz: Alles over de Fiets!</title>
+    
     <style>
-        /* CSS: Dit zorgt voor de mooie opmaak van de pagina */
+        /* We gebruiken een rustig lettertype en een zachte achtergrondkleur */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f4f8;
-            color: #333;
+            font-family: Arial, sans-serif;
+            background-color: #f4f9f9;
+            color: #333333;
+            margin: 0;
             padding: 20px;
+            font-size: 18px; /* Grote letters lezen makkelijker */
         }
-        .container {
-            max-width: 600px;
+
+        /* De 'doos' waar de hele quiz in zit */
+        .quiz-container {
+            max-width: 800px;
             margin: 0 auto;
-            background-color: white;
+            background-color: #ffffff;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        h2 {
-            color: #2c3e50;
+
+        h1 {
+            color: #0056b3;
             text-align: center;
         }
-        label {
+
+        /* Het vakje met de lees-tekst vooraf */
+        .lees-tekst {
+            background-color: #e6f2ff;
+            padding: 15px;
+            border-left: 5px solid #0056b3;
+            margin-bottom: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* De styling voor elke vraag */
+        .vraag-blok {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eeeeee;
+        }
+
+        .vraag-titel {
             font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Grote, makkelijk klikbare antwoord-knoppen */
+        .antwoord-optie {
             display: block;
-            margin-top: 20px;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #cccccc;
             border-radius: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-        button {
-            margin-top: 25px;
-            width: 100%;
-            padding: 12px;
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            font-weight: bold;
             cursor: pointer;
         }
-        button:hover {
-            background-color: #2ecc71;
+
+        .antwoord-optie:hover {
+            background-color: #e9ecef;
         }
-        #resultaat {
+
+        /* Maak het bolletje om aan te vinken lekker groot */
+        input[type="radio"] {
+            transform: scale(1.5);
+            margin-right: 15px;
+        }
+
+        /* De grote knop onderaan */
+        .controleer-knop {
+            background-color: #28a745;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .controleer-knop:hover {
+            background-color: #218838;
+        }
+
+        /* Het resultaat-vak (is eerst verborgen) */
+        #resultaat-scherm {
+            display: none;
             margin-top: 30px;
             padding: 20px;
-            background-color: #e8f8f5;
-            border-left: 5px solid #27ae60;
-            border-radius: 5px;
-            display: none; /* Dit verbergt de uitslag totdat er op de knop is geklikt */
+            background-color: #d4edda;
+            border: 2px solid #c3e6cb;
+            border-radius: 10px;
+            text-align: center;
         }
-        .opdracht {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 14px;
-            margin-top: 20px;
-            border-top: 1px solid #ccc;
-            padding-top: 10px;
+
+        .score-tekst {
+            font-size: 24px;
+            font-weight: bold;
+            color: #155724;
+        }
+
+        /* Foutmelding / Remediëring (is eerst verborgen) */
+        .remediering {
+            display: none;
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 5px solid #dc3545;
+            border-radius: 0 5px 5px 0;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>🌍 Project: De Win-Win Check</h2>
-        <p style="text-align: center;">Scoor voor je portemonnee én de planeet!</p>
+    <div class="quiz-container">
+        <h1>Economie Quiz: De Fiets 🚲</h1>
+        <p>Welkom bij de grote herhalingsquiz! Lees eerst de uitleg in het blauwe vakje, en beantwoord daarna de vraag. Succes!</p>
 
-        <label for="prijsFiets">Hoeveel euro kost jouw fiets (per jaar)?</label>
-        <input type="number" id="prijsFiets" placeholder="Bijv. 150" required>
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst">
+                <strong>Lees dit eerst:</strong> Je fietst naar school, maar je band is plat. Je gaat naar de fietsenmaker. Hij repareert je band. Je koopt geen nieuwe band, je betaalt hem alleen voor zijn werk.
+            </div>
+            <div class="vraag-titel">1. Is de reparatie van de fietsenmaker een goed of een dienst?</div>
+            
+            <label class="antwoord-optie">
+                <input type="radio" name="vraag1" value="A"> A) Een goed
+            </label>
+            <label class="antwoord-optie">
+                <input type="radio" name="vraag1" value="B"> B) Een dienst
+            </label>
 
-        <label for="keuzeVervoer">Met welk vervoer wil je de fiets vergelijken?</label>
-        <select id="keuzeVervoer">
-            <option value="A">De Bus</option>
-            <option value="B">De Trein</option>
-            <option value="C">De Auto</option>
-        </select>
+            <div class="remediering">
+                <strong>Oeps, dat is niet juist.</strong> Denk nog eens na: Een 'goed' is iets dat je kan aanraken (zoals een nieuwe fiets). Een 'dienst' is werk dat iemand voor jou doet (zoals de band plakken). Het juiste antwoord was dus een dienst.
+            </div>
+        </div>
 
-        <button onclick="berekenWinWin()">Bereken mijn score!</button>
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst">
+                <strong>Lees dit eerst:</strong> Je woont op 10 kilometer van je school. Er is geen bus. Je hebt echt een gewone fiets nodig om op school te geraken.
+            </div>
+            <div class="vraag-titel">2. Waar of niet waar: Een fiets om naar school te gaan is in dit geval een basisbehoefte.</div>
+            
+            <label class="antwoord-optie">
+                <input type="radio" name="vraag2" value="A"> A) Waar
+            </label>
+            <label class="antwoord-optie">
+                <input type="radio" name="vraag2" value="B"> B) Niet waar
+            </label>
 
-        <div id="resultaat"></div>
+            <div class="remediering">
+                <strong>Dat klopt helaas niet.</strong> Omdat je de fiets echt nodig hebt om op school te geraken (transport), is het een basisbehoefte. Luxe is iets wat je graag wil, maar niet écht nodig hebt om te leven of te functioneren.
+            </div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst">
+                <strong>Lees dit eerst:</strong> Je koopt een nieuwe fietsbel van 8 euro in de winkel. Je haalt je bankkaart boven en tikt je code in op het toestelletje.
+            </div>
+            <div class="vraag-titel">3. Welk soort geld heb je gebruikt om te betalen?</div>
+            
+            <label class="antwoord-optie">
+                <input type="radio" name="vraag3" value="A"> A) Chartaal geld (cash)
+            </label>
+            <label class="antwoord-optie">
+                <input type="radio" name="vraag3" value="B"> B) Giraal geld (elektronisch)
+            </label>
+
+            <div class="remediering">
+                <strong>Let op!</strong> Chartaal geld is geld dat je echt kan vastpakken (munten en briefjes). Je gebruikte je bankkaart, dit noemen we giraal of elektronisch geld.
+            </div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst">
+                <strong>Lees dit eerst:</strong> Je wil een hippe fietshelm kopen van 40 euro. Je hebt deze maand 20 euro zakgeld gekregen en je hebt nog 25 euro spaargeld in je spaarpot zitten.
+            </div>
+            <div class="vraag-titel">4. Ja of Nee: Heb je een groot genoeg budget om deze helm nu te kopen?</div>
+            
+            <label class="antwoord-optie">
+                <input type="radio" name="vraag4" value="A"> A) Ja
+            </label>
+            <label class="antwoord-optie">
+                <input type="radio" name="vraag4" value="B"> B) Nee
+            </label>
+
+            <div class="remediering">
+                <strong>Reken nog eens na!</strong> Je inkomsten zijn: 20 euro zakgeld + 25 euro spaargeld = 45 euro. De helm kost 40 euro. Je hebt dus meer dan genoeg budget! Het juiste antwoord is Ja.
+            </div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst">
+                <strong>Lees dit eerst:</strong> Je kijkt naar een YouTube-video van een bekende gamer. Tijdens het gamen neemt hij plots een slok van een sportdrankje en zegt: "Met dit drankje fiets ik na het gamen dubbel zo snel!". Hij heeft geld gekregen om dit te zeggen.
+            </div>
+            <div class="vraag-titel">5. Wat voor soort reclame is dit?</div>
+            
+            <label class="antwoord-optie">
+                <input type="radio" name="vraag5" value="A"> A) Sluikreclame (verborgen reclame)
+            </label>
+            <label class="antwoord-optie">
+                <input type="radio" name="vraag5" value="B"> B) Ideële reclame (reclame voor een goed doel)
+            </label>
+
+            <div class="remediering">
+                <strong>Dat is niet juist.</strong> Het is sluikreclame. Bij sluikreclame lijkt het alsof het een gewone video is, maar eigenlijk worden er stiekem producten gepromoot om jou te laten kopen.
+            </div>
+        </div>
+
+        <button class="controleer-knop" onclick="controleerQuiz()">Kijk mijn antwoorden na!</button>
+
+        <div id="resultaat-scherm">
+            <p class="score-tekst">Je score is: <span id="score-getal">0</span>%</p>
+            <p id="score-boodschap"></p>
+        </div>
+
     </div>
 
     <script>
-        function berekenWinWin() {
-            // Haal de waardes op die de leerling heeft ingevuld
-            let prijsFiets = parseFloat(document.getElementById('prijsFiets').value);
-            let keuze = document.getElementById('keuzeVervoer').value;
-            let resultaatDiv = document.getElementById('resultaat');
+        // Deze functie wordt gestart als je op de groene knop drukt
+        function controleerQuiz() {
+            // We zoeken alle vragen op de pagina
+            const alleVragen = document.querySelectorAll('.vraag-blok');
+            let aantalJuist = 0;
+            let totaalVragen = alleVragen.length;
 
-            // Controleer of de leerling wel een getal heeft ingevuld
-            if (isNaN(prijsFiets) || prijsFiets < 0) {
-                alert("Vul a.u.b. een geldige prijs in voor je fiets.");
-                return;
-            }
+            // We gaan elke vraag één voor één nakijken
+            alleVragen.forEach(function(vraag) {
+                // Wat is het juiste antwoord? (Staat in data-juist)
+                const juisteAntwoord = vraag.getAttribute('data-juist');
+                
+                // Welk antwoord heeft de leerling gekozen?
+                const gekozenAntwoord = vraag.querySelector('input[type="radio"]:checked');
+                
+                // Zoek het rode verbeter-vakje op voor deze vraag
+                const remedieringVak = vraag.querySelector('.remediering');
 
-            // Vaste gegevens
-            let onderhoud = 50;
-            let totaalFiets = prijsFiets + onderhoud;
-            let co2Fiets = 0;
+                // We maken het rode vakje eerst weer onzichtbaar (voor als ze nog een keer klikken)
+                remedieringVak.style.display = 'none';
 
-            let scorePortemonnee = 0;
-            let scoreNatuur = 0;
-            let anderVervoer = "";
-            let kostenAnder = 0;
-            let co2Ander = 0;
+                // Heeft de leerling iets ingevuld?
+                if (gekozenAntwoord) {
+                    if (gekozenAntwoord.value === juisteAntwoord) {
+                        // Antwoord is JUIST
+                        aantalJuist++;
+                    } else {
+                        // Antwoord is FOUT -> Toon de extra uitleg (remediëring)
+                        remedieringVak.style.display = 'block';
+                    }
+                } else {
+                    // NIETS ingevuld telt ook als fout, we tonen de uitleg
+                    remedieringVak.style.display = 'block';
+                }
+            });
 
-            // Bepaal de kosten en uitstoot van het gekozen vervoer
-            if (keuze === "A") {
-                anderVervoer = "de Bus";
-                kostenAnder = 215;
-                co2Ander = 800;
-                scoreNatuur = 30;
-            } else if (keuze === "B") {
-                anderVervoer = "de Trein";
-                kostenAnder = 350;
-                co2Ander = 400;
-                scoreNatuur = 40;
+            // Bereken de procenten
+            // Wiskunde: (aantal juist / totaal) * 100
+            const percentage = Math.round((aantalJuist / totaalVragen) * 100);
+
+            // Toon de score op het scherm
+            document.getElementById('resultaat-scherm').style.display = 'block';
+            document.getElementById('score-getal').innerText = percentage;
+
+            // Geef een leuk berichtje op basis van de score
+            const boodschap = document.getElementById('score-boodschap');
+            if (percentage === 100) {
+                boodschap.innerText = "Geweldig! Je bent een echte economie-kampioen!";
+            } else if (percentage >= 50) {
+                boodschap.innerText = "Goed gedaan! Bekijk de rode vakjes hierboven om te zien wat je nog kan leren.";
             } else {
-                anderVervoer = "de Auto";
-                kostenAnder = 1200;
-                co2Ander = 2000;
-                scoreNatuur = 10;
+                boodschap.innerText = "Dat was een beetje moeilijk. Geen paniek! Lees de uitleg in de rode vakjes en probeer het daarna nog een keer.";
             }
-
-            // De berekening
-            let besparingGeld = kostenAnder - totaalFiets;
-            let besparingCo2 = co2Ander - co2Fiets;
-
-            // Opbouwen van de tekst voor het resultaat
-            let htmlOutput = "<h3>JOUW RESULTAAT:</h3>";
-
-            if (besparingGeld > 0) {
-                htmlOutput += `<p>💰 <strong>JIJ:</strong> Je bespaart ${besparingGeld} euro per jaar!</p>`;
-                scorePortemonnee = 50;
-            } else {
-                let verlies = Math.abs(besparingGeld);
-                htmlOutput += `<p>💰 <strong>JIJ:</strong> Je fiets is dit jaar ${verlies} euro duurder dan ${anderVervoer}.</p>`;
-                scorePortemonnee = 10;
-            }
-
-            htmlOutput += `<p>🌳 <strong>DE NATUUR:</strong> Je bespaart ${besparingCo2} kg CO2 door te fietsen!</p>`;
-            scoreNatuur += 10; // Bonus voor de fietskeuze
-
-            // De Eindscore
-            let eindscore = scorePortemonnee + scoreNatuur;
-            htmlOutput += `<hr><h4>⭐ JOUW EINDSCORE: ${eindscore} / 100</h4>`;
-
-            if (eindscore >= 80) {
-                htmlOutput += "<p>🌍 <strong>Super!</strong> Zowel jij als de natuur worden hier slapend rijk van!</p>";
-            } else if (eindscore >= 50) {
-                htmlOutput += "<p>👍 <strong>Goed gedaan!</strong> Je zoekt een mooie balans tussen geld en groen.</p>";
-            } else {
-                htmlOutput += "<p>🤔 <strong>Interessant!</strong> Kan je een keuze maken die beter is voor je bankrekening of de planeet?</p>";
-            }
-
-            // Instructie voor Google Classroom
-            htmlOutput += `<div class="opdracht">--- OPDRACHT VOOR DE LEERLING ---<br>Maak nu een screenshot van dit resultaat en upload de foto in Google Classroom bij de opdracht.</div>`;
-
-            // Laat de verborgen div op het scherm zien met de nieuwe tekst
-            resultaatDiv.innerHTML = htmlOutput;
-            resultaatDiv.style.display = "block";
         }
     </script>
 
