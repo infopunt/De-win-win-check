@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Economie Quiz: Alles over de Fiets!</title>
+    <title>Grote Economie Quiz: De Fiets!</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <style>
-        /* We gebruiken een rustig lettertype en een zachte achtergrondkleur */
+        /* De opmaak van de website */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f9f9;
             color: #333333;
             margin: 0;
             padding: 20px;
-            font-size: 18px; /* Grote letters lezen makkelijker */
+            font-size: 18px; /* Grote letters */
         }
 
-        /* De 'doos' waar de hele quiz in zit */
         .quiz-container {
             max-width: 800px;
             margin: 0 auto;
@@ -31,7 +32,6 @@
             text-align: center;
         }
 
-        /* Het vakje met de lees-tekst vooraf */
         .lees-tekst {
             background-color: #e6f2ff;
             padding: 15px;
@@ -40,7 +40,6 @@
             border-radius: 0 5px 5px 0;
         }
 
-        /* De styling voor elke vraag */
         .vraag-blok {
             margin-bottom: 40px;
             padding-bottom: 20px;
@@ -53,7 +52,6 @@
             margin-bottom: 15px;
         }
 
-        /* Grote, makkelijk klikbare antwoord-knoppen */
         .antwoord-optie {
             display: block;
             background-color: #f9f9f9;
@@ -68,13 +66,11 @@
             background-color: #e9ecef;
         }
 
-        /* Maak het bolletje om aan te vinken lekker groot */
         input[type="radio"] {
             transform: scale(1.5);
             margin-right: 15px;
         }
 
-        /* De grote knop onderaan */
         .controleer-knop {
             background-color: #28a745;
             color: white;
@@ -91,7 +87,6 @@
             background-color: #218838;
         }
 
-        /* Het resultaat-vak (is eerst verborgen) */
         #resultaat-scherm {
             display: none;
             margin-top: 30px;
@@ -108,7 +103,6 @@
             color: #155724;
         }
 
-        /* Foutmelding / Remediëring (is eerst verborgen) */
         .remediering {
             display: none;
             background-color: #f8d7da;
@@ -123,154 +117,291 @@
 <body>
 
     <div class="quiz-container">
-        <h1>Economie Quiz: De Fiets 🚲</h1>
-        <p>Welkom bij de grote herhalingsquiz! Lees eerst de uitleg in het blauwe vakje, en beantwoord daarna de vraag. Succes!</p>
+        <h1>Grote Economie Quiz: De Fiets 🚲</h1>
+        <p>Welkom! Lees eerst de uitleg in het blauwe vakje, en beantwoord daarna de vraag. Haal jij 5 of meer juiste antwoorden voor een leuke verrassing?</p>
 
         <div class="vraag-blok" data-juist="B">
-            <div class="lees-tekst">
-                <strong>Lees dit eerst:</strong> Je fietst naar school, maar je band is plat. Je gaat naar de fietsenmaker. Hij repareert je band. Je koopt geen nieuwe band, je betaalt hem alleen voor zijn werk.
-            </div>
-            <div class="vraag-titel">1. Is de reparatie van de fietsenmaker een goed of een dienst?</div>
-            
-            <label class="antwoord-optie">
-                <input type="radio" name="vraag1" value="A"> A) Een goed
-            </label>
-            <label class="antwoord-optie">
-                <input type="radio" name="vraag1" value="B"> B) Een dienst
-            </label>
-
-            <div class="remediering">
-                <strong>Oeps, dat is niet juist.</strong> Denk nog eens na: Een 'goed' is iets dat je kan aanraken (zoals een nieuwe fiets). Een 'dienst' is werk dat iemand voor jou doet (zoals de band plakken). Het juiste antwoord was dus een dienst.
-            </div>
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> De fietsenmaker repareert jouw platte band. Je betaalt hem voor zijn werk.</div>
+            <div class="vraag-titel">1. Is de reparatie een goed of een dienst?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag1" value="A"> A) Een goed</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag1" value="B"> B) Een dienst</label>
+            <div class="remediering"><strong>Oeps!</strong> Een dienst is werk dat iemand voor jou doet. Een goed is iets dat je kan vastpakken.</div>
         </div>
 
         <div class="vraag-blok" data-juist="A">
-            <div class="lees-tekst">
-                <strong>Lees dit eerst:</strong> Je woont op 10 kilometer van je school. Er is geen bus. Je hebt echt een gewone fiets nodig om op school te geraken.
-            </div>
-            <div class="vraag-titel">2. Waar of niet waar: Een fiets om naar school te gaan is in dit geval een basisbehoefte.</div>
-            
-            <label class="antwoord-optie">
-                <input type="radio" name="vraag2" value="A"> A) Waar
-            </label>
-            <label class="antwoord-optie">
-                <input type="radio" name="vraag2" value="B"> B) Niet waar
-            </label>
-
-            <div class="remediering">
-                <strong>Dat klopt helaas niet.</strong> Omdat je de fiets echt nodig hebt om op school te geraken (transport), is het een basisbehoefte. Luxe is iets wat je graag wil, maar niet écht nodig hebt om te leven of te functioneren.
-            </div>
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je hebt echt een fiets nodig om 10 kilometer verderop op school te geraken.</div>
+            <div class="vraag-titel">2. Is deze fiets een basisbehoefte?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag2" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag2" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Foutje!</strong> Omdat je de fiets echt nodig hebt voor transport, is het een basisbehoefte, geen luxe.</div>
         </div>
 
         <div class="vraag-blok" data-juist="B">
-            <div class="lees-tekst">
-                <strong>Lees dit eerst:</strong> Je koopt een nieuwe fietsbel van 8 euro in de winkel. Je haalt je bankkaart boven en tikt je code in op het toestelletje.
-            </div>
-            <div class="vraag-titel">3. Welk soort geld heb je gebruikt om te betalen?</div>
-            
-            <label class="antwoord-optie">
-                <input type="radio" name="vraag3" value="A"> A) Chartaal geld (cash)
-            </label>
-            <label class="antwoord-optie">
-                <input type="radio" name="vraag3" value="B"> B) Giraal geld (elektronisch)
-            </label>
-
-            <div class="remediering">
-                <strong>Let op!</strong> Chartaal geld is geld dat je echt kan vastpakken (munten en briefjes). Je gebruikte je bankkaart, dit noemen we giraal of elektronisch geld.
-            </div>
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je koopt een bel en betaalt met je bankkaart.</div>
+            <div class="vraag-titel">3. Welk soort geld gebruik je?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag3" value="A"> A) Chartaal geld (cash)</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag3" value="B"> B) Giraal geld (elektronisch)</label>
+            <div class="remediering"><strong>Let op!</strong> Betalen met een kaart of app is giraal geld. Chartaal geld zijn munten en briefjes.</div>
         </div>
 
         <div class="vraag-blok" data-juist="A">
-            <div class="lees-tekst">
-                <strong>Lees dit eerst:</strong> Je wil een hippe fietshelm kopen van 40 euro. Je hebt deze maand 20 euro zakgeld gekregen en je hebt nog 25 euro spaargeld in je spaarpot zitten.
-            </div>
-            <div class="vraag-titel">4. Ja of Nee: Heb je een groot genoeg budget om deze helm nu te kopen?</div>
-            
-            <label class="antwoord-optie">
-                <input type="radio" name="vraag4" value="A"> A) Ja
-            </label>
-            <label class="antwoord-optie">
-                <input type="radio" name="vraag4" value="B"> B) Nee
-            </label>
-
-            <div class="remediering">
-                <strong>Reken nog eens na!</strong> Je inkomsten zijn: 20 euro zakgeld + 25 euro spaargeld = 45 euro. De helm kost 40 euro. Je hebt dus meer dan genoeg budget! Het juiste antwoord is Ja.
-            </div>
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je hebt 20 euro zakgeld en 25 euro spaargeld. Een helm kost 40 euro.</div>
+            <div class="vraag-titel">4. Heb je genoeg budget?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag4" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag4" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Reken nog eens na!</strong> 20 + 25 = 45 euro. De helm kost 40. Je hebt dus genoeg!</div>
         </div>
 
         <div class="vraag-blok" data-juist="A">
-            <div class="lees-tekst">
-                <strong>Lees dit eerst:</strong> Je kijkt naar een YouTube-video van een bekende gamer. Tijdens het gamen neemt hij plots een slok van een sportdrankje en zegt: "Met dit drankje fiets ik na het gamen dubbel zo snel!". Hij heeft geld gekregen om dit te zeggen.
-            </div>
-            <div class="vraag-titel">5. Wat voor soort reclame is dit?</div>
-            
-            <label class="antwoord-optie">
-                <input type="radio" name="vraag5" value="A"> A) Sluikreclame (verborgen reclame)
-            </label>
-            <label class="antwoord-optie">
-                <input type="radio" name="vraag5" value="B"> B) Ideële reclame (reclame voor een goed doel)
-            </label>
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Een bekende TikTokker drinkt in een video toevallig een sportdrankje en zegt dat hij er sneller van fietst. Hij kreeg hiervoor betaald.</div>
+            <div class="vraag-titel">5. Welke reclame is dit?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag5" value="A"> A) Sluikreclame</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag5" value="B"> B) Ideële reclame</label>
+            <div class="remediering"><strong>Niet helemaal.</strong> Dit is sluikreclame, omdat de reclame verstopt zit in een gewone video.</div>
+        </div>
 
-            <div class="remediering">
-                <strong>Dat is niet juist.</strong> Het is sluikreclame. Bij sluikreclame lijkt het alsof het een gewone video is, maar eigenlijk worden er stiekem producten gepromoot om jou te laten kopen.
-            </div>
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> De wind en de zuurstof in je fietsbanden kost geen geld. Het is overal te vinden in de natuur.</div>
+            <div class="vraag-titel">6. Is lucht een vrij goed?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag6" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag6" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Foutje!</strong> Een vrij goed is onbeperkt aanwezig in de natuur en kost niets. Lucht is dus een vrij goed.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je hebt al een fiets, maar je wil graag een hele dure, exclusieve racefiets omdat die er mooi uitziet.</div>
+            <div class="vraag-titel">7. Wat voor behoefte is dit?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag7" value="A"> A) Basisbehoefte</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag7" value="B"> B) Secundaire behoefte (Luxe)</label>
+            <div class="remediering"><strong>Dat is niet juist.</strong> Je hebt het niet écht nodig om te overleven. Het is dus een luxe of secundaire behoefte.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> De overheid hangt posters op: "Draag altijd een fluohesje op de fiets!". Ze willen niks verkopen, alleen zorgen dat jij veilig bent.</div>
+            <div class="vraag-titel">8. Welke reclame is dit?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag8" value="A"> A) Commerciële reclame</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag8" value="B"> B) Ideële reclame</label>
+            <div class="remediering"><strong>Oeps!</strong> Ideële reclame probeert je gedrag te veranderen voor een betere maatschappij, zonder iets te verkopen.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je betaalt je nieuwe fietsslot met een briefje van 20 euro in de winkel.</div>
+            <div class="vraag-titel">9. Wat voor soort geld is dit?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag9" value="A"> A) Chartaal geld</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag9" value="B"> B) Giraal geld</label>
+            <div class="remediering"><strong>Let op!</strong> Briefjes en munten die je kan vastpakken noemen we chartaal geld.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je geeft je oude fiets aan een vriend, en in ruil krijg jij zijn oude step. Er komt geen geld aan te pas.</div>
+            <div class="vraag-titel">10. Hoe noemen we dit?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag10" value="A"> A) Directe ruil</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag10" value="B"> B) Indirecte ruil</label>
+            <div class="remediering"><strong>Niet juist.</strong> Bij een directe ruil ruil je goederen voor goederen, zonder geld te gebruiken.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Elke zaterdag breng je kranten rond met je fiets. Je krijgt daarvoor 15 euro per week van de krantenwinkel.</div>
+            <div class="vraag-titel">11. Hoe noemen we dit geld?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag11" value="A"> A) Arbeidsinkomen (Loon)</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag11" value="B"> B) Zakgeld</label>
+            <div class="remediering"><strong>Foutje!</strong> Omdat je er voor werkt, is het een arbeidsinkomen of loon. Zakgeld krijg je zomaar.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je stopt elke week 5 euro in een spaarpot. Je wil dit volhouden tot je een elektrische fiets kan kopen.</div>
+            <div class="vraag-titel">12. Ben je aan het sparen of aan het lenen?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag12" value="A"> A) Sparen</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag12" value="B"> B) Lenen</label>
+            <div class="remediering"><strong>Oeps!</strong> Je legt je eigen geld opzij voor later. Dat heet sparen.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je wil nu een fiets kopen, maar je hebt geen geld. Je mama betaalt de fiets. Jij moet elke maand 10 euro aan je mama betalen tot het bedrag helemaal betaald is.</div>
+            <div class="vraag-titel">13. Heb je het geld gespaard of geleend?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag13" value="A"> A) Gespaard</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag13" value="B"> B) Geleend</label>
+            <div class="remediering"><strong>Let op!</strong> Je gebruikt geld van iemand anders en moet het later teruggeven. Dat is lenen.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Jij stapt de winkel binnen en koopt een nieuwe bel.</div>
+            <div class="vraag-titel">14. Ben jij de consument of de producent?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag14" value="A"> A) Producent</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag14" value="B"> B) Consument</label>
+            <div class="remediering"><strong>Dat klopt niet.</strong> Een consument is iemand die iets koopt. De producent maakt het.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> De fabriek maakt de metalen frames voor de fietsen.</div>
+            <div class="vraag-titel">15. Is de fabriek de consument of de producent?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag15" value="A"> A) Producent</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag15" value="B"> B) Consument</label>
+            <div class="remediering"><strong>Foutje!</strong> Een producent is het bedrijf dat het product maakt.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je koopt fietslichtjes via een webshop op internet. Ze worden met de post geleverd.</div>
+            <div class="vraag-titel">16. Hoe noemen we verkopen via internet?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag16" value="A"> A) E-commerce</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag16" value="B"> B) Fysieke handel</label>
+            <div class="remediering"><strong>Oeps!</strong> E-commerce is een ander woord voor verkoop via het internet.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je koopt een dure fiets. De verkoper geeft je een kassaticket (ontvangstbewijs).</div>
+            <div class="vraag-titel">17. Waarom moet je dit ticket goed bijhouden?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag17" value="A"> A) Voor de reclame</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag17" value="B"> B) Voor de garantie</label>
+            <div class="remediering"><strong>Niet juist.</strong> Zonder ticket heb je geen bewijs dat je daar gekocht hebt, en krijg je geen garantie als het stuk gaat.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Twee dagen na aankoop breekt je trapper zomaar af. Je hebt er niets geks mee gedaan.</div>
+            <div class="vraag-titel">18. Heb je recht op gratis reparatie door de wettelijke garantie?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag18" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag18" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Let op!</strong> Als een product heel snel kapot gaat zonder jouw schuld, heb je recht op garantie.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je koopt een perfecte tweedehands fiets. Dit is goedkoper, maar ook beter voor de natuur.</div>
+            <div class="vraag-titel">19. In welke economie past tweedehands spullen hergebruiken?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag19" value="A"> A) Wegwerpeconomie</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag19" value="B"> B) Circulaire economie (hergebruik)</label>
+            <div class="remediering"><strong>Foutje!</strong> Spullen niet weggooien maar opnieuw gebruiken is de basis van een circulaire economie.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je betaalt elke maand 5 euro aan een bedrijf. Als je fiets wordt gestolen, betalen zij jou een nieuwe fiets.</div>
+            <div class="vraag-titel">20. Wat heb je afgesloten?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag20" value="A"> A) Een verzekering</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag20" value="B"> B) Een spaarrekening</label>
+            <div class="remediering"><strong>Dat klopt niet.</strong> Je betaalt om een risico (diefstal) in te dekken. Dit heet een verzekering.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je wil een bel én een lichtje kopen. Ze kosten elk 5 euro. Je hebt maar 5 euro in je portemonnee. Je moet dus kiezen.</div>
+            <div class="vraag-titel">21. Is dit een economisch keuzeprobleem?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag21" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag21" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Oeps!</strong> Je hebt meer wensen dan budget. Dit is precies wat we een keuzeprobleem noemen.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Aan de kassa van de fietswinkel zie je plots lekkere snoepjes liggen. Je koopt ze snel zonder erover na te denken.</div>
+            <div class="vraag-titel">22. Is dit een geplande aankoop?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag22" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag22" value="B"> B) Nee, een impulsaankoop</label>
+            <div class="remediering"><strong>Let op!</strong> Iets wat je onverwacht en zonder nadenken koopt, is een impulsaankoop.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Een reclame zegt: "Koop deze fiets, hij gaat nooit meer stuk in je hele leven!"</div>
+            <div class="vraag-titel">23. Is dit eerlijke reclame?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag23" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag23" value="B"> B) Nee, het is misleidende reclame</label>
+            <div class="remediering"><strong>Niet juist.</strong> Alles kan stuk gaan. Ze beloven iets wat niet kan om jou te doen kopen. Dat is misleidend.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Voordat je een fietspomp koopt, kijk je naar de prijs op internet en in 2 verschillende winkels.</div>
+            <div class="vraag-titel">24. Ben je een slimme (kritische) consument?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag24" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag24" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Foutje!</strong> Prijzen vergelijken is heel slim. Zo bespaar je geld.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je betaalt elke maand exact 5 euro voor je fietsverzekering. Dit bedrag is altijd hetzelfde.</div>
+            <div class="vraag-titel">25. Is dit een vaste kost?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag25" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag25" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Oeps!</strong> Een kost die regelmatig terugkomt en vaak hetzelfde is, is een vaste kost.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Je fietst over glas en je band is stuk. Je moet hem onverwacht laten maken.</div>
+            <div class="vraag-titel">26. Is dit een vaste of een onverwachte (variabele) kost?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag26" value="A"> A) Vaste kost</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag26" value="B"> B) Onverwachte kost</label>
+            <div class="remediering"><strong>Let op!</strong> Je wist niet dat dit ging gebeuren. Dit is een onverwachte of incidentele kost.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Er is maar 1 fietsenwinkel in jouw hele dorp. Niemand anders verkoopt of maakt fietsen.</div>
+            <div class="vraag-titel">27. Heeft deze winkel veel concurrentie?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag27" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag27" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Dat klopt niet.</strong> Als hij de enige is, heeft hij geen concurrenten. Dit noemen we soms een monopolie.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Er openen plots 3 nieuwe fietsenwinkels in je straat. Ze willen allemaal klanten lokken.</div>
+            <div class="vraag-titel">28. Wat zal er waarschijnlijk met de prijzen gebeuren?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag28" value="A"> A) De prijzen dalen</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag28" value="B"> B) De prijzen stijgen enorm</label>
+            <div class="remediering"><strong>Foutje!</strong> Als er meer concurrentie is, maken winkels hun spullen goedkoper om meer mensen te lokken.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> De fietsenmaker gebruikt een dure tang en een hamer om je fiets te maken.</div>
+            <div class="vraag-titel">29. Dit gereedschap, is dat de factor 'arbeid' of 'kapitaal'?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag29" value="A"> A) Arbeid</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag29" value="B"> B) Kapitaal</label>
+            <div class="remediering"><strong>Oeps!</strong> Arbeid is het werk van de mens zelf. Kapitaal zijn de machines en het gereedschap dat hij gebruikt.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst"><strong>Lees dit eerst:</strong> Vaker de fiets nemen in plaats van de auto is goed voor het klimaat.</div>
+            <div class="vraag-titel">30. Verkleint fietsen je ecologische voetafdruk?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag30" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag30" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Let op!</strong> Fietsen stoot geen uitlaatgassen uit, dus je hebt een kleinere en betere ecologische voetafdruk!</div>
         </div>
 
         <button class="controleer-knop" onclick="controleerQuiz()">Kijk mijn antwoorden na!</button>
 
         <div id="resultaat-scherm">
             <p class="score-tekst">Je score is: <span id="score-getal">0</span>%</p>
+            <p id="aantal-juist-tekst"></p>
             <p id="score-boodschap"></p>
         </div>
 
     </div>
 
     <script>
-        // Deze functie wordt gestart als je op de groene knop drukt
         function controleerQuiz() {
-            // We zoeken alle vragen op de pagina
             const alleVragen = document.querySelectorAll('.vraag-blok');
             let aantalJuist = 0;
             let totaalVragen = alleVragen.length;
 
-            // We gaan elke vraag één voor één nakijken
             alleVragen.forEach(function(vraag) {
-                // Wat is het juiste antwoord? (Staat in data-juist)
                 const juisteAntwoord = vraag.getAttribute('data-juist');
-                
-                // Welk antwoord heeft de leerling gekozen?
                 const gekozenAntwoord = vraag.querySelector('input[type="radio"]:checked');
-                
-                // Zoek het rode verbeter-vakje op voor deze vraag
                 const remedieringVak = vraag.querySelector('.remediering');
 
-                // We maken het rode vakje eerst weer onzichtbaar (voor als ze nog een keer klikken)
                 remedieringVak.style.display = 'none';
 
-                // Heeft de leerling iets ingevuld?
                 if (gekozenAntwoord) {
                     if (gekozenAntwoord.value === juisteAntwoord) {
-                        // Antwoord is JUIST
                         aantalJuist++;
                     } else {
-                        // Antwoord is FOUT -> Toon de extra uitleg (remediëring)
                         remedieringVak.style.display = 'block';
                     }
                 } else {
-                    // NIETS ingevuld telt ook als fout, we tonen de uitleg
                     remedieringVak.style.display = 'block';
                 }
             });
 
-            // Bereken de procenten
-            // Wiskunde: (aantal juist / totaal) * 100
             const percentage = Math.round((aantalJuist / totaalVragen) * 100);
 
-            // Toon de score op het scherm
             document.getElementById('resultaat-scherm').style.display = 'block';
             document.getElementById('score-getal').innerText = percentage;
+            
+            // Toon hoeveel vragen ze exact juist hebben
+            document.getElementById('aantal-juist-tekst').innerText = "Je hebt " + aantalJuist + " van de " + totaalVragen + " vragen juist!";
 
-            // Geef een leuk berichtje op basis van de score
             const boodschap = document.getElementById('score-boodschap');
             if (percentage === 100) {
                 boodschap.innerText = "Geweldig! Je bent een echte economie-kampioen!";
@@ -278,6 +409,16 @@
                 boodschap.innerText = "Goed gedaan! Bekijk de rode vakjes hierboven om te zien wat je nog kan leren.";
             } else {
                 boodschap.innerText = "Dat was een beetje moeilijk. Geen paniek! Lees de uitleg in de rode vakjes en probeer het daarna nog een keer.";
+            }
+
+            // HIER IS DE CONFETTI CODE!
+            // Als ze 5 of meer vragen juist hebben, schieten we confetti af.
+            if (aantalJuist >= 5) {
+                confetti({
+                    particleCount: 150, // Aantal snippers
+                    spread: 80,         // Hoe ver ze vliegen
+                    origin: { y: 0.6 }  // Waar het start op het scherm
+                });
             }
         }
     </script>
