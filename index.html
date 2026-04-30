@@ -313,4 +313,134 @@
             <div class="vraag-titel">23. Is dit eerlijke reclame?</div>
             <label class="antwoord-optie"><input type="radio" name="vraag23" value="A"> A) Ja</label>
             <label class="antwoord-optie"><input type="radio" name="vraag23" value="B"> B) Nee, het is misleidende reclame</label>
-            <div class="remediering"><strong>Niet juist.
+            <div class="remediering"><strong>Niet juist.</strong> Alles kan stuk gaan. Ze beloven iets wat niet kan om jou te doen kopen. Dat is misleidend.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst">Voordat je een fietspomp koopt, kijk je naar de prijs op internet en in 2 verschillende winkels.</div>
+            <div class="vraag-titel">24. Ben je een slimme (kritische) consument?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag24" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag24" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Foutje!</strong> Prijzen vergelijken is heel slim. Zo bespaar je geld.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst">Je betaalt elke maand exact 5 euro voor je fietsverzekering. Dit bedrag is altijd hetzelfde.</div>
+            <div class="vraag-titel">25. Is dit een vaste kost?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag25" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag25" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Oeps!</strong> Een kost die regelmatig terugkomt en vaak hetzelfde is, is een vaste kost.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst">Je fietst over glas en je band is stuk. Je moet hem onverwacht laten maken.</div>
+            <div class="vraag-titel">26. Is dit een vaste of een onverwachte (variabele) kost?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag26" value="A"> A) Vaste kost</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag26" value="B"> B) Onverwachte kost</label>
+            <div class="remediering"><strong>Let op!</strong> Je wist niet dat dit ging gebeuren. Dit is een onverwachte of incidentele kost.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst">Er is maar 1 fietsenwinkel in jouw hele dorp. Niemand anders verkoopt of maakt fietsen.</div>
+            <div class="vraag-titel">27. Heeft deze winkel veel concurrentie?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag27" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag27" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Dat klopt niet.</strong> Als hij de enige is, heeft hij geen concurrenten. Dit noemen we soms een monopolie.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst">Er openen plots 3 nieuwe fietsenwinkels in je straat. Ze willen allemaal klanten lokken.</div>
+            <div class="vraag-titel">28. Wat zal er waarschijnlijk met de prijzen gebeuren?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag28" value="A"> A) De prijzen dalen</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag28" value="B"> B) De prijzen stijgen enorm</label>
+            <div class="remediering"><strong>Foutje!</strong> Als er meer concurrentie is, maken winkels hun spullen goedkoper om meer mensen te lokken.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="B">
+            <div class="lees-tekst">De fietsenmaker gebruikt een dure tang en een hamer om je fiets te maken.</div>
+            <div class="vraag-titel">29. Dit gereedschap, is dat de factor 'arbeid' of 'kapitaal'?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag29" value="A"> A) Arbeid</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag29" value="B"> B) Kapitaal</label>
+            <div class="remediering"><strong>Oeps!</strong> Arbeid is het werk van de mens zelf. Kapitaal zijn de machines en het gereedschap dat hij gebruikt.</div>
+        </div>
+
+        <div class="vraag-blok" data-juist="A">
+            <div class="lees-tekst">Vaker de fiets nemen in plaats van de auto is goed voor het klimaat.</div>
+            <div class="vraag-titel">30. Verkleint fietsen je ecologische voetafdruk?</div>
+            <label class="antwoord-optie"><input type="radio" name="vraag30" value="A"> A) Ja</label>
+            <label class="antwoord-optie"><input type="radio" name="vraag30" value="B"> B) Nee</label>
+            <div class="remediering"><strong>Let op!</strong> Fietsen stoot geen uitlaatgassen uit, dus je hebt een kleinere en betere ecologische voetafdruk!</div>
+        </div>
+
+        <button class="controleer-knop" onclick="controleerQuiz()">Kijk mijn antwoorden na!</button>
+
+        <div id="resultaat-scherm">
+            <p class="score-tekst">Je score is: <span id="score-getal">0</span>%</p>
+            <p id="aantal-juist-tekst"></p>
+            <p id="score-boodschap"></p>
+            
+            <div class="classroom-upload">
+                📸 Klaar? Neem een screenshot van je score en upload deze in Google Classroom!
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function controleerQuiz() {
+            const alleVragen = document.querySelectorAll('.vraag-blok');
+            let aantalJuist = 0;
+            let totaalVragen = alleVragen.length;
+
+            alleVragen.forEach(function(vraag) {
+                const juisteAntwoord = vraag.getAttribute('data-juist');
+                const gekozenAntwoord = vraag.querySelector('input[type="radio"]:checked');
+                const remedieringVak = vraag.querySelector('.remediering');
+
+                remedieringVak.style.display = 'none';
+
+                if (gekozenAntwoord) {
+                    if (gekozenAntwoord.value === juisteAntwoord) {
+                        aantalJuist++;
+                    } else {
+                        remedieringVak.style.display = 'block';
+                    }
+                } else {
+                    remedieringVak.style.display = 'block';
+                }
+            });
+
+            const percentage = Math.round((aantalJuist / totaalVragen) * 100);
+
+            document.getElementById('resultaat-scherm').style.display = 'block';
+            document.getElementById('score-getal').innerText = percentage;
+            
+            document.getElementById('aantal-juist-tekst').innerText = "Je hebt " + aantalJuist + " van de " + totaalVragen + " vragen juist!";
+
+            const boodschap = document.getElementById('score-boodschap');
+            if (percentage === 100) {
+                boodschap.innerText = "Geweldig! Je bent een echte economie-kampioen!";
+            } else if (percentage >= 50) {
+                boodschap.innerText = "Goed gedaan! Bekijk de rode vakjes hierboven om te zien wat je nog kan leren.";
+            } else {
+                boodschap.innerText = "Dat was een beetje moeilijk. Geen paniek! Lees de uitleg in de rode vakjes en probeer het daarna nog een keer.";
+            }
+
+            if (aantalJuist >= 5) {
+                try {
+                    if (typeof confetti === "function") {
+                        confetti({
+                            particleCount: 150, 
+                            spread: 80,         
+                            origin: { y: 0.6 }  
+                        });
+                    }
+                } catch (fout) {
+                    console.log("Confetti is helaas geblokkeerd door de browser.");
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
